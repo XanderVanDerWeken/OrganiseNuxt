@@ -1,11 +1,11 @@
 <script setup lang="ts">
-defineProps<{
-    title: string;
-}>();
+import type { BoardOverview } from '~~/shared/models';
+
+defineProps<BoardOverview>();
 </script>
 
 <template>
-    <div class="board-card">
+    <div class="board-card" @click="async () => await navigateTo(`/boards/${title}`)">
         <h2>{{ title }}</h2>
     </div>
 </template>
