@@ -798,6 +798,13 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/retry/-/retry-0.4.3.tgz#c2b9d2e374ee62c586d3adbea87199b1d7a7a6ba"
   integrity sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==
 
+"@iconify-json/material-symbols@^1.2.50":
+  version "1.2.50"
+  resolved "https://registry.yarnpkg.com/@iconify-json/material-symbols/-/material-symbols-1.2.50.tgz#f10a8843fd30ce0c5b67a9c38fe2224816a5491c"
+  integrity sha512-71tjHR70h46LHtBFab3fAd2V/wPTO7JMV5lKnRn3IcF303LaFgAlO0BZeTJDcmCv9d0snRZmnoLZAJVD7/eisw==
+  dependencies:
+    "@iconify/types" "*"
+
 "@iconify/collections@^1.0.628":
   version "1.0.635"
   resolved "https://registry.yarnpkg.com/@iconify/collections/-/collections-1.0.635.tgz#9ebdb8951a3d19e25306b122f5fad69048185a4a"
@@ -1186,7 +1193,7 @@
     vite-plugin-vue-tracer "^1.0.1"
     web-vitals "^5.1.0"
 
-"@nuxt/icon@^2.1.1":
+"@nuxt/icon@2.1.1", "@nuxt/icon@^2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@nuxt/icon/-/icon-2.1.1.tgz#e194459a41e4e7417cca452f636ae38c7e8a5537"
   integrity sha512-KX991xA64ttUQYXnLFafOw8EYxmmGRtnd2z1P9PjMOeSxxLXxUL1v9fKH2njqtPkamiOI0fvthxfJpJ4uH71sw==
