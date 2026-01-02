@@ -1458,6 +1458,17 @@
     vite-plugin-checker "^0.12.0"
     vue-bundle-renderer "^2.2.0"
 
+"@nuxtjs/color-mode@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/color-mode/-/color-mode-4.0.0.tgz#3ea831606c8c20455cec3171430fa7ab39a714a8"
+  integrity sha512-xyaVR/TPLdMuRa2VOgH6b75jvmFEsn9QKL6ISldaAw38ooFJfWY1ts2F3ye43wcT/goCbcuvPuskF2f8yUZhlw==
+  dependencies:
+    "@nuxt/kit" "^4.2.1"
+    exsolve "^1.0.8"
+    pathe "^2.0.3"
+    pkg-types "^2.3.0"
+    semver "^7.7.3"
+
 "@nuxtjs/color-mode@^3.5.2":
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/@nuxtjs/color-mode/-/color-mode-3.5.2.tgz#4f2cbdd44009068b746e3bb0964b761b90969b73"
