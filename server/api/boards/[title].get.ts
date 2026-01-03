@@ -5,9 +5,8 @@ export default defineEventHandler(async (event) => {
 
     const titleDecoded = decodeURI(title);
 
-    return [
-        {
-            title: titleDecoded,
-        }
-    ] as Board[];
+    // TODO: Fetch board from database
+    return {
+        title: titleDecoded,
+    } as Board;
 });
