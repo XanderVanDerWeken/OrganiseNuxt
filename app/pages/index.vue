@@ -2,11 +2,11 @@
 import BoardCard from '@/components/BoardCard.vue';
 import type { BoardOverview } from '~~/shared/models';
 
-const boards: BoardOverview[] = [
-    { title: 'Board 1' },
-    { title: 'Board 2' },
-    { title: 'Board 3' },
-];
+const boards: BoardOverview[] = await fetchBoardOverviews();
+
+async function fetchBoardOverviews(): Promise<BoardOverview[]> {
+    return await $fetch<BoardOverview[]>('/api/boards');
+}
 </script>
 
 <template>
