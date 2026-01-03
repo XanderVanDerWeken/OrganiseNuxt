@@ -15,6 +15,6 @@ export interface List {
 
 export interface Card {
     title: string;
-    description: string;
+    description?: string;
     order: number;
 }
