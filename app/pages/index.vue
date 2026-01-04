@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import BoardCard from '@/components/BoardCard.vue';
+import NewBoard from '~/components/NewBoard.vue';
 import type { BoardOverviewDTO } from '~~/shared/models';
 
-const boards: BoardOverviewDTO[] = await fetchBoardOverviews();
+//const boards: BoardOverviewDTO[] = await fetchBoardOverviews();
+const boards = ref<BoardOverviewDTO[]>(await fetchBoardOverviews());
 
 async function fetchBoardOverviews(): Promise<BoardOverviewDTO[]> {
     return await $fetch<BoardOverviewDTO[]>('/api/boards');
@@ -17,6 +19,7 @@ async function fetchBoardOverviews(): Promise<BoardOverviewDTO[]> {
             <div v-for="board in boards" :key="board.title">
                 <BoardCard v-bind="board"/>
             </div>
+            <NewBoard />
         </div>
     </div>
 </template>

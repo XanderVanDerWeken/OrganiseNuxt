@@ -28,5 +28,13 @@ export const boardRepo = {
         });
         
         return board;
-    }
+    },
+
+    create(title: string) {
+        return prisma.board.create({
+            data: {
+                title: title,
+            },
+        });
+    },
 }
