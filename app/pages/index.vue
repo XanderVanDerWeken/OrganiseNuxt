@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import BoardCard from '@/components/BoardCard.vue';
-import type { BoardOverview } from '~~/shared/models';
+import type { BoardOverviewDTO } from '~~/shared/models';
 
-const boards: BoardOverview[] = await fetchBoardOverviews();
+const boards: BoardOverviewDTO[] = await fetchBoardOverviews();
 
-async function fetchBoardOverviews(): Promise<BoardOverview[]> {
-    return await $fetch<BoardOverview[]>('/api/boards');
+async function fetchBoardOverviews(): Promise<BoardOverviewDTO[]> {
+    return await $fetch<BoardOverviewDTO[]>('/api/boards');
 }
 </script>
 

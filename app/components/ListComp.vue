@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { List } from '~~/shared/models';
+import type { ListDTO } from '~~/shared/models';
 
-defineProps<List>();
+defineProps<ListDTO>();
 </script>
 
 <template>

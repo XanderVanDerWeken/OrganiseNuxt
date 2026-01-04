@@ -1,19 +1,19 @@
-export interface BoardOverview {
+export interface BoardOverviewDTO {
     title: string;
 }
 
-export interface Board {
+export interface BoardDTO {
     title: string;
-    lists: List[];
+    lists: ListDTO[];
 }
 
-export interface List {
+export interface ListDTO {
     title: string;
     order: number;
-    cards: Card[];
+    cards: CardDTO[];
 }
 
-export interface Card {
+export interface CardDTO {
     title: string;
     description?: string;
     order: number;

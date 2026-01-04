@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { BoardOverview } from '~~/shared/models';
+import type { BoardOverviewDTO } from '~~/shared/models';
 
-defineProps<BoardOverview>();
+defineProps<BoardOverviewDTO>();
 </script>
 
 <template>

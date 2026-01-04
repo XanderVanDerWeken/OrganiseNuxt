@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia';
-import type { Board } from '~~/shared/models';
+import type { BoardDTO } from '~~/shared/models';
 
 export const useBoardStore = defineStore('board', {
     state: () => ({
-        board: null as Board | null,
+        board: null as BoardDTO | null,
     }),
 
     actions: {
         async loadBoard(title: string) {
-            this.board = await $fetch<Board>(`/api/boards/${encodeURI(title)}`);
+            this.board = await $fetch<BoardDTO>(`/api/boards/${encodeURI(title)}`);
         },
     },
 });

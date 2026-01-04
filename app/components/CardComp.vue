@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Card } from '~~/shared/models';
+import type { CardDTO } from '~~/shared/models';
 
-defineProps<Card>();
+defineProps<CardDTO>();
 </script>
 
 <template>
