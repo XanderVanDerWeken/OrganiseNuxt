@@ -1,19 +1,14 @@
-import type { BoardDTO, BoardOverviewDTO } from "~~/shared/models";
+import type { Board } from "./board.models";
 import { boardRepo } from "./board.repo";
-import { toBoardDTO } from "./board.mapper";
 
-export async function getAllBoards(): Promise<BoardOverviewDTO[]> {
-    return boardRepo.findAll();
+export async function getAllBoards(): Promise<Board[]> {
+    return boardRepo.findAllOverviews();
 }
 
-export async function getBoardByTitle(title: string): Promise<BoardDTO> {
-    const board = await boardRepo.findByTitle(title);
-    return toBoardDTO(board);
+export async function getBoardByTitle(title: string): Promise<Board | null> {
+    return await boardRepo.findByTitle(title);
 }
 
-export async function createBoard(title: string): Promise<BoardOverviewDTO> {
-    const newBoard = await boardRepo.create(title);
-    return {
-        title: newBoard.title,
-    };
+export async function createBoard(title: string): Promise<Board> {
+    return await boardRepo.create(title);
 }

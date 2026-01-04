@@ -1,13 +1,24 @@
 import { prisma } from '~~/server/utils/prisma';
+import type { Board } from './board.models';
 
 export const boardRepo = {
-    findAll() {
-        return prisma.board.findMany();
+    async findAllOverviews(): Promise<Board[]> {
+        const boards = await prisma.board.findMany({
+            select: {
+                id: true,
+                title: true,
+            },
+        });
+
+        return boards.map(b => ({
+            id: b.id,
+            title: b.title,
+        }));
     },
 
-    findByTitle(title: string) {
+    async findByTitle(title: string): Promise<Board | null> {
         // TODO: Change to findUnique when title is unique
-        const board = prisma.board.findFirst({
+        const board = await prisma.board.findFirst({
             where: {
                 title: title,
             },
@@ -27,14 +38,36 @@ export const boardRepo = {
             },
         });
         
-        return board;
+        if (!board)
+            return null;
+
+        return {
+            id: board.id,
+            title: board.title,
+            lists: board.lists.map(l => ({
+                id: l.id,
+                title: l.title,
+                order: l.order,
+                cards: l.cards.map(c => ({
+                    id: c.id,
+                    title: c.title,
+                    description: c.description || undefined,
+                    order: c.order,
+                })),
+            })),
+        };
     },
 
-    create(title: string) {
-        return prisma.board.create({
+    async create(title: string): Promise<Board> {
+        const board = await prisma.board.create({
             data: {
                 title: title,
             },
         });
+
+        return {
+            id: board.id,
+            title: board.title,
+        };
     },
 }

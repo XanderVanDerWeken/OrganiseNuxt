@@ -1,22 +1,28 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import type { BoardDTO } from "~~/shared/models";
+import type { BoardDTO, BoardOverviewDTO } from "~~/shared/models";
+import type { Board, Card, List } from "./board.models";
 
-export function toBoardDTO(board: any): BoardDTO {
-  return {
-    title: board.title,
-    lists: board.lists.map(toListDTO),
-  }
+export function toBoardOverviewDTO(board: Board): BoardOverviewDTO {
+    return {
+        title: board.title,
+    }
 }
 
-function toListDTO(list: any) {
+export function toBoardDTO(board: Board): BoardDTO {
+    return {
+        title: board.title,
+        lists: board.lists?.map(toListDTO) ?? [],
+    }
+}
+
+function toListDTO(list: List) {
     return {
         title: list.title,
         order: list.order,
-        cards: list.cards.map(toCardDTO),
+        cards: list.cards?.map(toCardDTO) ?? [],
     };
 }
 
-function toCardDTO(card: any) {
+function toCardDTO(card: Card) {
     return {
         title: card.title,
         description: card.description || undefined,
