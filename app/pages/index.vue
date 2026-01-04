@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import BoardCard from '@/components/BoardCard.vue';
 import NewBoard from '~/components/NewBoard.vue';
-import type { BoardOverviewDTO } from '~~/shared/models';
+import { useBoardOverviewStore } from '~/stores/boardOverview';
 
-//const boards: BoardOverviewDTO[] = await fetchBoardOverviews();
-const boards = ref<BoardOverviewDTO[]>(await fetchBoardOverviews());
+const store = useBoardOverviewStore();
 
-async function fetchBoardOverviews(): Promise<BoardOverviewDTO[]> {
-    return await $fetch<BoardOverviewDTO[]>('/api/boards');
-}
+await store.loadBoards();
 </script>
 
 <template>
@@ -16,7 +13,7 @@ async function fetchBoardOverviews(): Promise<BoardOverviewDTO[]> {
         <h1>Welcome to the Home Page</h1>
         <p>This is the main landing page of the application.</p>
         <div class="board-list">
-            <div v-for="board in boards" :key="board.title">
+            <div v-for="board in store.boards" :key="board.title">
                 <BoardCard v-bind="board"/>
             </div>
             <NewBoard />

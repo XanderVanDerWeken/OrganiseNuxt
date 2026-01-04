@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useBoardOverviewStore } from '~/stores/boardOverview';
+
+const store = useBoardOverviewStore();
 
 const boardTitle = ref('');
 
 async function createBoard() {
-    await useFetch('/api/boards', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ title: boardTitle.value })
-    });
+    await store.createNewBoard(boardTitle.value);
 
-    
+    boardTitle.value = '';
 }
 </script>
 

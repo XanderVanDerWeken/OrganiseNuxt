@@ -11,7 +11,9 @@ export async function getBoardByTitle(title: string): Promise<BoardDTO> {
     return toBoardDTO(board);
 }
 
-export async function createBoard(title: string): Promise<BoardDTO> {
+export async function createBoard(title: string): Promise<BoardOverviewDTO> {
     const newBoard = await boardRepo.create(title);
-    return toBoardDTO(newBoard);
+    return {
+        title: newBoard.title,
+    };
 }
