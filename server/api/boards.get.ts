@@ -1,10 +1,5 @@
-import type { BoardOverview } from "~~/shared/models";
+import { getAllBoards } from "../boards/board.service";
 
 export default defineEventHandler(async () => {
-    // TODO: Fetch board overviews from database
-    return [
-        { title: 'Board 1' },
-        { title: 'Board 2' },
-        { title: 'Board 3' },
-    ] as BoardOverview[];
+    return await getAllBoards();
 });
