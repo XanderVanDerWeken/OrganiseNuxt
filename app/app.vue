@@ -6,7 +6,7 @@
 
 <style>
 body {
-  background-color: var(--bg);
-  color: var(--text);
+  background-color: var(--bg-root);
+  color: var(--text-primary);
 }
 </style>

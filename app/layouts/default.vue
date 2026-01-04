@@ -24,7 +24,7 @@ import ThemeButton from '@/components/ThemeButton.vue';
 <style scoped>
 header {
     display: flex;
-    background-color: var(--layout-bg);
+    background-color: var(--bg-surface);
     align-items: center;
     justify-content: space-between;
     padding: 0px;
@@ -49,7 +49,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: var(--layout-bg);
+    background-color: var(--bg-surface);
     padding: 10px;
     text-align: center;
     margin-top: 20px;
