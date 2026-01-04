@@ -7,7 +7,7 @@ defineProps<ListDTO>();
 <template>
     <div>
         <span class="list-title">{{ title }}</span>
-        <div class="card-container">
+        <div class="cards">
             <CardComp
                 v-for="card in cards"
                 :key="card.order"
@@ -18,13 +18,13 @@ defineProps<ListDTO>();
 
 <style scoped>
 .list-title {
-    font-weight: 1000;
+    font-size: 14px;
+    font-weight: 600;
 }
 
-.card-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
+.cards {
+    width: 280px;
+    border-radius: 8px;
+    padding: 8px;
 }
 </style>

@@ -5,27 +5,32 @@ defineProps<CardDTO>();
 </script>
 
 <template>
-    <div class="card-container">
+    <div class="card">
         <span class="card-title">{{ title }}</span>
         <span v-if="description != null" class="card-description">{{ description }}</span>
     </div>
 </template>
 
 <style scoped>
-.card-container {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #9e9e9e;
+.card {
+    background: var(--bg-surface);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 8px;
+}
+
+span {
+    display: block;
 }
 
 .card-title {
-    display: block;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 .card-description {
-    margin-top: 10px;
+    display: block;
+    margin-top: 8px;
+    color: var(--text-muted);
 }
 </style>

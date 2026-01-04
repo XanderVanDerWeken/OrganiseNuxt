@@ -8,9 +8,9 @@ await store.loadBoard(route.params.title as string);
 </script>
 
 <template>
-    <div v-if="store.board != null">
+    <div v-if="store.board != null" class="board">
         <h2>{{ store.board!.title }}</h2>
-        <div class="list-container">
+        <div class="lists">
             <ListComp
                 v-for="list in store.board!.lists"
                 :key="list.order"
@@ -23,11 +23,21 @@ await store.loadBoard(route.params.title as string);
 </template>
 
 <style scoped>
-.list-container {
-    display: flex;
-    gap: 16px;
-    flex-flow: row nowrap;
+.board {
+    height: 100%;
     overflow-x: auto;
-    padding: 8px 0;
+}
+
+.lists {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+}
+
+ListComp {
+    flex: 0 0 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 </style>
