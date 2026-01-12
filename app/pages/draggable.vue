@@ -15,19 +15,29 @@
         { id: 8, name: 'Item 8', order: 4 }
     ]);
 
-    const dragging = ref(false);
+    function updateOrder(list: typeof items1.value) {
+        list.forEach((item, index) => {
+            item.order = index + 1;
+        })
+    }
+
+    function printLists() {
+        console.log('List 1:', items1.value);
+        console.log('List 2:', items2.value);
+    }
 </script>
 
 <template>
     <div>
+        <button @click="printLists">Print Lists to Console</button>
+
         <h2>Draggable Items 1</h2>
         
         <draggable 
             :list="items1"
             item-key="id"
             group="items"
-            @start="dragging = true"
-            @end="dragging = false">
+            @change="updateOrder(items1); updateOrder(items2);">
             <template #item="{ element }">
                 <div class="container">
                     {{ element.name }} 
@@ -41,8 +51,7 @@
             :list="items2"
             item-key="id"
             group="items"
-            @start="dragging = true"
-            @end="dragging = false">
+            @change="updateOrder(items1); updateOrder(items2);">
             <template #item="{ element }">
                 <div class="container">
                     {{ element.name }} 
