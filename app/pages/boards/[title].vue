@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useBoardStore } from '~/stores/board';
+import draggable from 'vuedraggable';
 
 const route = useRoute();
 const store = useBoardStore();
@@ -14,12 +15,18 @@ await store.loadBoard(route.params.title as string);
             <div v-for="list in store.board!.lists" :key="list.order" class="list">
                 <span class="list-title">{{ list.title }}</span>
 
-                <div class="cards">
-                    <div v-for="card in list.cards" :key="card.order" class="card">
-                        <span class="card-title">{{ card.title }}</span>
-                        <span v-if="card.description != null" class="card-description">{{ card.description }}</span>
-                    </div>
-                </div>
+                <draggable
+                    :list="list.cards"
+                    item-key="id"
+                    group="cards"
+                    class="cards">
+                    <template #item="{ element }">
+                        <div class="card">
+                            <span class="card-title">{{ element.title }}</span>
+                            <span v-if="element.description != null" class="card-description">{{ element.description }}</span>
+                        </div>
+                    </template>
+                </draggable>
             </div>
         </div>
     </div>
