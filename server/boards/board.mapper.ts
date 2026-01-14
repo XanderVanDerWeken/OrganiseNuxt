@@ -1,4 +1,4 @@
-import type { BoardDTO, BoardOverviewDTO } from "~~/shared/models";
+import type { BoardDTO, BoardOverviewDTO, CardDTO, ListDTO } from "~~/shared/models";
 import type { Board, Card, List } from "./board.models";
 
 export function toBoardOverviewDTO(board: Board): BoardOverviewDTO {
@@ -14,16 +14,18 @@ export function toBoardDTO(board: Board): BoardDTO {
     }
 }
 
-function toListDTO(list: List) {
+function toListDTO(list: List): ListDTO {
     return {
+        id: list.id,
         title: list.title,
         order: list.order,
         cards: list.cards?.map(toCardDTO) ?? [],
     };
 }
 
-function toCardDTO(card: Card) {
+function toCardDTO(card: Card): CardDTO {
     return {
+        id: card.id,
         title: card.title,
         description: card.description || undefined,
         order: card.order,

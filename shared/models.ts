@@ -8,12 +8,14 @@ export interface BoardDTO {
 }
 
 export interface ListDTO {
+    id: number;
     title: string;
     order: number;
     cards: CardDTO[];
 }
 
 export interface CardDTO {
+    id: number;
     title: string;
     description?: string;
     order: number;
