@@ -20,3 +20,23 @@ export interface CardDTO {
     description?: string;
     order: number;
 }
+
+export interface PutBoardDTO {
+    id ?: number;
+    title: string;
+    lists: PutListDTO[];
+}
+
+export interface PutListDTO {
+    id ?: number;
+    title: string;
+    order: number;
+    cards: PutCardDTO[];
+}
+
+export interface PutCardDTO {
+    id ?: number;
+    title: string;
+    description ?: string;
+    order: number;
+}

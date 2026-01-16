@@ -19,7 +19,8 @@ await store.loadBoard(route.params.title as string);
                     :list="list.cards"
                     item-key="id"
                     group="cards"
-                    class="cards">
+                    class="cards"
+                    @change="store.saveBoard(store.board!)">
                     <template #item="{ element }">
                         <div class="card">
                             <span class="card-title">{{ element.title }}</span>
