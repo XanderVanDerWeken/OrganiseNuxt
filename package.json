@@ -21,17 +21,19 @@
     "@prisma/client": "^7.2.0",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^25.0.3",
+    "better-sqlite3": "^12.6.0",
     "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.45.1",
     "eslint": "^9.0.0",
     "nuxt": "^4.2.2",
     "pinia": "^3.0.4",
-    "prisma": "^7.2.0",
     "typescript": "^5.9.3",
     "vue": "^3.5.26",
     "vue-router": "^4.6.4",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
-    "@iconify-json/material-symbols": "^1.2.50"
+    "@iconify-json/material-symbols": "^1.2.50",
+    "drizzle-kit": "^0.31.8"
   }
 }
