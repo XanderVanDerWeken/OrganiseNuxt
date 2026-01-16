@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BoardCard from '@/components/BoardCard.vue';
-import NewBoard from '~/components/NewBoard.vue';
-import { useBoardOverviewStore } from '~/stores/boardOverview';
+import NewBoard from '@/components/NewBoard.vue';
+import { useBoardOverviewStore } from '@/stores/boardOverview';
 
 const store = useBoardOverviewStore();
 
@@ -14,13 +14,13 @@ await store.loadBoards();
         <p>This is the main landing page of the application.</p>
         <div class="container">
             <div class="board-container">
-                <BoardCard 
-                    v-for="board in store.boards" 
-                    :key="board.title" 
-                    v-bind="board" 
+                <BoardCard
+                    v-for="board in store.boards"
+                    :key="board.title"
+                    v-bind="board"
                     class="board-card"/>
             </div>
-            
+
             <NewBoard />
         </div>
     </div>
@@ -39,7 +39,7 @@ await store.loadBoards();
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 8px;
-    grid-row-gap: 8px; 
+    grid-row-gap: 8px;
 }
 
 .board-card {

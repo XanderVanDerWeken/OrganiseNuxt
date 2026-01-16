@@ -1,4 +1,4 @@
-import type { PutBoardDTO } from "~~/shared/models";
+import type { BoardInput } from "~~/shared/models";
 import type { Board } from "./board.models";
 import { boardRepo } from "./board.repo";
 
@@ -10,10 +10,6 @@ export async function getBoardByTitle(title: string): Promise<Board | null> {
     return await boardRepo.findByTitle(title);
 }
 
-export async function createBoard(title: string): Promise<Board> {
-    return await boardRepo.create(title);
-}
-
-export async function upsertBoard(updatedBoard: PutBoardDTO): Promise<Board> {
-    return await boardRepo.update(updatedBoard);
+export async function upsertBoard(newBoard: BoardInput): Promise<Board> {
+    return await boardRepo.update(newBoard);
 }

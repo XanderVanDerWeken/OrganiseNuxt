@@ -26,5 +26,5 @@ logs
 # Sqlite Dev Database
 dev.db
 
-# Prisma
-app/generated/prisma/
+# Drizzle
+drizzle/

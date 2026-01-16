@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import type { BoardOverviewDTO } from '~~/shared/models';
+import type { BoardInput, BoardOverviewDTO } from '~~/shared/models';
 
 export const useBoardOverviewStore = defineStore('boardOverview', {
     state: () => ({
@@ -16,8 +16,8 @@ export const useBoardOverviewStore = defineStore('boardOverview', {
 
         async createNewBoard(title: string) {
             const newBoard = await $fetch<BoardOverviewDTO>('/api/boards', {
-                method: 'POST',
-                body: { title },
+                method: 'PUT',
+                body: { title } as BoardInput,
             });
             this.boards.push(newBoard);
         },
