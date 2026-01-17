@@ -32,3 +32,13 @@ export const cardTable = sqliteTable('cards', {
     order: integer({ mode: 'number' })
         .notNull(),
 });
+
+export const userTable = sqliteTable('users', {
+    id: integer({ mode: 'number' })
+        .primaryKey({ autoIncrement: true }),
+    username: text()
+        .unique()
+        .notNull(),
+    passwordHash: text()
+        .notNull(),
+});
