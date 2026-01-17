@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { count, eq } from "drizzle-orm";
 import { db } from "../db";
 import { userTable } from "../db/schema";
 import type { User } from "./user.models";
@@ -13,6 +13,17 @@ export const userRepo = {
             })
             .returning()
             .then(r => r[0]);
+    },
+
+    async chechUsernameExists(username: string): Promise<boolean> {
+        const result = await db
+            .select({ count: count() })
+            .from(userTable)
+            .where(eq(userTable.username, username))
+            .limit(1)
+            .then(r => r[0]);
+
+        return result.count > 0;
     },
 
     async getUserByUsername(username: string): Promise<User | null> {

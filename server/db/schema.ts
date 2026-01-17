@@ -42,3 +42,12 @@ export const userTable = sqliteTable('users', {
     passwordHash: text()
         .notNull(),
 });
+
+export const sessionTable = sqliteTable('sessions', {
+    id: text().primaryKey(),
+    userId: integer({ mode: 'number' })
+        .references(() => userTable.id)
+        .notNull(),
+    expiresAt: integer({ mode: 'timestamp' })
+        .notNull()
+});
