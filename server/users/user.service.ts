@@ -1,74 +1,80 @@
-import bcrypt from 'bcrypt';
-import { userRepo } from './user.repo';
-import { sessionRepo } from './session.repo';
-import type { Session } from './user.models';
+import bcrypt from "bcrypt";
+import { userRepo } from "./user.repo";
+import { sessionRepo } from "./session.repo";
+import type { Session, User } from "./user.models";
 
-export async function signupUserFlow(username: string, password: string): Promise<boolean> {
-    // Validate Input
+export async function tryCreateUser(
+  username: string,
+  password: string,
+): Promise<User | null> {
+  // Validate Input
 
-    // Check Username Uniqueness
-    if (await userRepo.chechUsernameExists(username)) {
-        return false;
-    }
+  // Check Username Uniqueness
+  if (await userRepo.chechUsernameExists(username)) {
+    return null;
+  }
 
-    // Hash Password
-    const passwordHash = await hashPassword(password);
+  // Hash Password
+  const passwordHash = await hashPassword(password);
 
-    // Insert User
-    const newUser = await userRepo.createUser({
-        id: -1,
-        username: username,
-        passwordHash: passwordHash,
-    });
-
-    // Create Session
-    const session: Session = {
-        id: createSessionId(),
-        userId: newUser.id,
-        expiresAt: createExpiryDate(),
-    };
-
-    sessionRepo.createSession(session);
-
-    // Set cookie
-
-    // Return Success
-    return true;
+  // Insert User
+  return await userRepo.createUser({
+    id: -1,
+    username: username,
+    passwordHash: passwordHash,
+  });
 }
 
-async function loginUserFlow(username: string, password: string): Promise<boolean> {
-    // Find User by Username
+export async function createSessionForUser(user: User): Promise<Session> {
+  // Create Session
+  const session: Session = {
+    id: createSessionId(),
+    userId: user.id,
+    expiresAt: createExpiryDate(),
+  };
 
-    // Compare Passwords
+  sessionRepo.createSession(session);
 
-    // If invalid reject
-    return false;
+  return session;
+}
 
-    // Create new Session
+export async function getUserByUsername(
+  username: string,
+): Promise<User | null> {
+  return userRepo.getUserByUsername(username);
+}
 
-    // Set cookie
+export async function checkUserCredentials(
+  user: User,
+  password: string,
+): Promise<boolean> {
+  return verifyPassword(password, user.passwordHash);
+}
 
-    // Return Success
-    return true;
+export async function deleteSession(sessionId: string): Promise<void> {
+  await sessionRepo.removeSession(sessionId);
 }
 
 async function hashPassword(password: string): Promise<string> {
-    return bcrypt.hash(password, 12);
+  return bcrypt.hash(password, 12);
 }
 
-/*async function verifyPassword(password: string, hash: string): Promise<boolean> {
-    return bcrypt.compare(password, hash);
-}*/
+async function verifyPassword(
+  password: string,
+  hash: string,
+): Promise<boolean> {
+  return bcrypt.compare(password, hash);
+}
 
 function createSessionId(): string {
-    return crypto.randomUUID();
+  return crypto.randomUUID();
 }
 
 function createExpiryDate(): Date {
-    const fiveMinutes = 5 * 60;
+  const fiveMinutes = 5 * 60;
 
-    const expiry = new Date();
-    expiry.setDate(expiry.getMinutes() + fiveMinutes);
+  const expiry = new Date();
+  expiry.setDate(expiry.getMinutes() + fiveMinutes);
 
-    return expiry;
+  return expiry;
 }
